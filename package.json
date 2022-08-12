@@ -6,8 +6,11 @@
     "start": "node dist/bin/www",
     "dev": "nodemon dist/bin/www",
     "compile": "tsc --watch",
-    "knex": "./node_modules/.bin/knex --knexfile src/db/knexfile.ts",
-    "migrate": "npx knex migrate:latest --knexfile db/knexfile.js"
+    "knex:migrate:make": "knex --knexfile src/db/knexfile.ts -x ts migrate:make",
+    "knex:migrate:latest": "knex --knexfile src/db/knexfile.ts migrate:latest",
+    "knex:migrate:rollback": "knex --knexfile src/db/knexfile.ts migrate:rollback",
+    "knex": "./node_modules/.bin/knex --knexfile dist/db/knexfile.js",
+    "migrate": "npx knex migrate:latest --knexfile dist/db/knexfile.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -16,7 +19,8 @@
     "express": "~4.16.1",
     "knex": "^2.2.0",
     "morgan": "~1.9.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "vitest": "^0.21.1"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3",
