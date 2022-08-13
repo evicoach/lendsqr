@@ -5,8 +5,7 @@ dontenv.config({})
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import indexRouter from './routes/index';
-import usersRouter from './routes/users';
+import router from './routes/v1';
 
 
 
@@ -18,7 +17,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(router);
+app.use((err, req, res, next) => {
+    res.status(err && err.status || 500);
+    res.send({ error: err && err.message || "An error occurred" });
+});
 
 export default app;
