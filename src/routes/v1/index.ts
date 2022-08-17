@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import fundRouter from './fund';
 import accountRouter from './account';
+import healthCheckRouter from '../home';
 
 const router = Router();
 
@@ -11,5 +12,6 @@ const router = Router();
 
 router.use("/fund", fundRouter) // transfer, fund and widthraw
 router.use("/account", accountRouter) // signup and login
+router.use("/", healthCheckRouter);
 
 export default router;
