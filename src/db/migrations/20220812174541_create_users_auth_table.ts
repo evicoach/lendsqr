@@ -5,7 +5,7 @@ export async function up(knex: Knex): Promise<void> {
     .withSchema(process.env.DB_SCHEMA!)
     .createTable("user_auth", (table) => {
       table.increments("auth_id");
-      table.string("email").notNullable();
+      table.string("email").unique().notNullable();
       table.string("password").notNullable();
       table.timestamps(true, true);
     });
