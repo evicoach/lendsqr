@@ -23,4 +23,13 @@ When a user wants to add more money to their account, they make a request to the
 The account holder details are gotten from the token in the header, and user's account balance and available balance are updated.
 
 ## Making a Widthrawal
+Customers can make a widthrawal by calling the widthrawal endpoint.
+They specify how much they want to widthraw and a check is done to determine if the customer has that amount or more in their account.
+If they have enough balance, the program proceeds with the widthrawal else, an appropriate response message is sent back.
+
+## Transfer Funds
+Customers can also transfer funds to other customer's account. This is done by making a request to the "transfer" endpoint.
+They specify the recipient, amount and description.
+The app runs a check to determine if the customer has that amount in their account balance.
+If they have enough balance, the given amount is deducted from the sender's account and credited to the recipient's account.
 
