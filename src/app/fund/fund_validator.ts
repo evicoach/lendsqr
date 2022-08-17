@@ -7,7 +7,7 @@ class FundValidator {
   transfer: RequestHandler = (req, res, next) => {
     const transferSchema = Joi.object({
       to: Joi.number().required(),
-      amount: Joi.number().required(),
+      amount: Joi.number().positive().required(),
       description: Joi.string().required()
     });
     const errors = Validator.validate(transferSchema, req.body);
@@ -16,7 +16,7 @@ class FundValidator {
   };
   widthraw: RequestHandler = (req, res, next) => {
     const widthrawSchema = Joi.object({
-      amount: Joi.number().required()
+      amount: Joi.number().positive().required()
     });
     const errors = Validator.validate(widthrawSchema, req.body);
     if (!errors) return next();
@@ -24,7 +24,7 @@ class FundValidator {
   };
   fund: RequestHandler = (req, res, next) => {
     const fundSchema = Joi.object({
-      amount: Joi.number().required(),
+      amount: Joi.number().positive().required(),
       accountId: Joi.number().required(),
     });
     const errors = Validator.validate(fundSchema, req.body);
